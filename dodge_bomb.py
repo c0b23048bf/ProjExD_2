@@ -86,6 +86,7 @@ def main():
         tmr += 1
         clock.tick(50)
 
+
 #Game over
 def gameover(screen):
     rrr = pg.Surface((WIDTH , HEIGHT))
