@@ -4,7 +4,7 @@ import pygame as pg
 from random import randint
 
 
-WIDTH, HEIGHT = 1600, 900
+WIDTH, HEIGHT = 1400, 700
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -17,13 +17,12 @@ def main():
     kk_rct.center = 900, 400
     clock = pg.time.Clock()
     tmr = 0
-    bomb_x ,bomb_y = randint(0,HEIGHT-20),randint(0,HEIGHT-20)
     
     bomb = pg.Surface((20,20))
     bomb.set_colorkey((0,0,0))
     pg.draw.circle(bomb,(255,0,0),(10,10),10)
     bomb_rect = bomb.get_rect()
-    bomb_rect.center = bomb_x,bomb_y
+    bomb_rect.center = randint(0,HEIGHT-20),randint(0,HEIGHT-20)
     vx,vy = 5,5
     
     
@@ -36,14 +35,19 @@ def main():
 
             
         screen.blit(bg_img, [0, 0])
-        bomb_x,bomb_y = bomb_x + vx ,bomb_y + vy
-        screen.blit(bomb,[bomb_x,bomb_y])
+        bomb_rect.move_ip(vx,vy)
+        screen.blit(bomb,bomb_rect)
         
         key_lst = pg.key.get_pressed()
         sum_list = {pg.K_UP:(0,-5),pg.K_DOWN:(0,+5),pg.K_LEFT:(-5,0),pg.K_RIGHT:(+5,0)}
         for key,value in zip(sum_list.keys(),sum_list.values()):
             if key_lst[key]: 
                 kk_rct.move_ip(value)
+                b_v =  check_bound(kk_rct)
+                if b_v[0] == False:
+                    kk_rct.move_ip((-value[0],value[1]))
+                if b_v[1] == False:
+                    kk_rct.move_ip((value[0],-value[1]))
                 
         b_v =  check_bound(bomb_rect)
         if b_v[0] == False:
@@ -52,6 +56,7 @@ def main():
         if b_v[1] == False:
             vy *= -1
             print("b")
+            
             
         screen.blit(kk_img, kk_rct)
         pg.display.update()
