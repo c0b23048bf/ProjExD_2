@@ -56,28 +56,15 @@ def main():
         if b_v[1] == False:
             vy *= -1
             print("b")
+        
+        if kk_rct.colliderect(bomb_rect):
+            break
             
             
         screen.blit(kk_img, kk_rct)
         pg.display.update()
         tmr += 1
         clock.tick(50)
-"""       
-def vvv(kk_r):
-    kv = [True,True,True,True]
-    if kk_r.left < 0 :
-        kv[0] = False
-        print("dd")
-    if kk_r.right > 1600:
-        kv[1] = False
-    if kk_r.top < 0:
-        kv[2] = False
-    if kk_r.bottom > 900:
-        kv[3] = False
-        print("dx")
-    
-    return kv
-"""
 
 def check_bound(obj_rct: pg.Rect) -> tuple[bool, bool]:
     """
@@ -93,6 +80,7 @@ def check_bound(obj_rct: pg.Rect) -> tuple[bool, bool]:
         tate = False
         print(8)
     return yoko, tate
+
 if __name__ == "__main__":
     pg.init()
     main()
