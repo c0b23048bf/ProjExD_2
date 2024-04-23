@@ -25,6 +25,7 @@ def main():
     vx,vy = 0,0
     
     
+    
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: 
