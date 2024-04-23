@@ -1,7 +1,7 @@
 import os
-import sys
 import pygame as pg
 from random import randint
+import sys
 import time
 
 WIDTH, HEIGHT = 1400, 700
