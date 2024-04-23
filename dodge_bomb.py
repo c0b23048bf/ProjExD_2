@@ -4,6 +4,7 @@ from random import randint
 import sys
 import time
 
+
 WIDTH, HEIGHT = 1400, 700
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
